@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin - SIPILAH</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚖️ SIPILAH Law Firm</a>
+            <div class="d-flex align-items-center">
+                <span class="navbar-text me-3 text-white">Halo, <strong>Admin</strong></span>
+                <button onclick="logout()" class="btn btn-danger btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="mb-4">Dashboard Statistik Admin</h2>
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary shadow">
+                    <div class="card-body">
+                        <h5>Total Klien</h5>
+                        <h2 class="display-5" id="jml-klien">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success shadow">
+                    <div class="card-body">
+                        <h5>Pengacara</h5>
+                        <h2 class="display-5" id="jml-pengacara">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-dark bg-warning shadow">
+                    <div class="card-body">
+                        <h5>Menunggu</h5>
+                        <h2 class="display-5" id="jml-menunggu">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger shadow">
+                    <div class="card-body">
+                        <h5>Total Kasus</h5>
+                        <h2 class="display-5" id="jml-kasus">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card p-4 shadow mb-4">
+                    <h5 class="text-center">Grafik Status Konsultasi</h5>
+                    <canvas id="grafikKonsultasi" height="100"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 shadow border-0">
+                    <h5>Menu Navigasi</h5><hr>
+                    <a href="admin_konsultasi.html" class="btn btn-outline-primary mb-2 w-100">📋 Kelola Konsultasi</a>
+                    <a href="admin_pengacara.html" class="btn btn-outline-success mb-2 w-100">👨‍⚖️ Kelola Pengacara</a>
+                    <a href="admin_klien.html" class="btn btn-outline-danger mb-2 w-100">👥 Kelola Akun Klien</a>
+                    <a href="admin_artikel.html" class="btn btn-outline-warning mb-2 w-100 text-dark">📝 Kelola Artikel</a>
+                    <a href="daftar_pengacara.html" class="btn btn-outline-info w-100">🔍 Lihat Direktori</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mengambil data dari localStorage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let riwayat = JSON.parse(localStorage.getItem('riwayat_konsultasi')) || [];
+            let pengacara = JSON.parse(localStorage.getItem('pengacara')) || [];
+
+            // Menghitung statistik (Klien = total user dikurangi 1 akun admin)
+            let totalKlien = users.filter(u => u.username !== 'admin').length;
+            let totalPengacara = pengacara.length;
+            let totalKasus = riwayat.length;
+            
+            let menunggu = riwayat.filter(r => r.status === 'MENUNGGU').length;
+            let disetujui = riwayat.filter(r => r.status === 'DISETUJUI').length;
+            let ditolak = riwayat.filter(r => r.status === 'DITOLAK').length;
+
+            // Memasukkan angka ke dalam HTML
+            document.getElementById('jml-klien').innerText = totalKlien;
+            document.getElementById('jml-pengacara').innerText = totalPengacara;
+            document.getElementById('jml-menunggu').innerText = menunggu;
+            document.getElementById('jml-kasus').innerText = totalKasus;
+
+            // Menggambar grafik Chart.js sesuai data real
+            new Chart(document.getElementById('grafikKonsultasi').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Menunggu', 'Disetujui', 'Ditolak'],
+                    datasets: [{
+                        label: 'Jumlah Kasus', 
+                        data: [menunggu, disetujui, ditolak],
+                        backgroundColor: ['rgba(255, 193, 7, 0.7)', 'rgba(25, 135, 84, 0.7)', 'rgba(220, 53, 69, 0.7)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

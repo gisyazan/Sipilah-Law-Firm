@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Klien - SIPILAH</title>
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚖️ SIPILAH Law Firm</a>
+            <div class="d-flex align-items-center">
+                <span class="navbar-text me-3 text-white">Halo, <strong class="nama-user">Klien</strong></span>
+                <button onclick="logout()" class="btn btn-danger btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 text-center">
+                <h2 class="fw-bold">Selamat Datang di SIPILAH</h2>
+                <p class="lead text-secondary">Solusi hukum terpercaya untuk Anda.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="card p-4 shadow-sm border-0 h-100 border-primary border-top border-4">
+                            <h4>Butuh Bantuan Hukum?</h4>
+                            <p>Ajukan jadwal konsultasi dengan pengacara ahli kami sekarang.</p>
+                            <a href="riwayat_konsultasi.html" class="btn btn-primary mt-auto w-100">Ajukan Konsultasi</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <div class="card p-4 shadow-sm border-0 h-100 border-info border-top border-4">
+                            <h4>Cari Pengacara</h4>
+                            <p>Lihat profil dan spesialisasi dari pengacara terbaik kami.</p>
+                            <a href="daftar_pengacara.html" class="btn btn-info mt-auto text-dark w-100">Lihat Daftar Pengacara</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-10">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-4">
+                    <h3 class="fw-bold m-0">📰 Berita & Edukasi Hukum Terbaru</h3>
+                </div>
+                
+                <div class="row" id="daftar-artikel-publik">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

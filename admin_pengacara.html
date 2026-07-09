@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Pengacara - SIPILAH</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card p-4 shadow mb-4 border-success">
+            <div class="d-flex justify-content-between mb-3">
+                <h4 class="text-success m-0">➕ Tambah Pengacara</h4>
+                <a href="dashboard_admin.html" class="btn btn-secondary btn-sm">⬅ Kembali</a>
+            </div>
+            <form onsubmit="simpanPengacara(event)" class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" id="nama" class="form-control" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="col-md-4">
+                    <select id="spesialisasi" class="form-select" required>
+                        <option value="">Pilih Spesialisasi...</option>
+                        <option value="Hukum Pidana">Hukum Pidana</option>
+                        <option value="Hukum Perdata">Hukum Perdata</option>
+                        <option value="Hukum Bisnis">Perusahaan/Korporasi</option>
+                        <option value="Hukum Keluarga">Keluarga & Perceraian</option>
+                        <option value="Hukum Tenaga Kerja">Ketenagakerjaan</option>
+                        <option value="Hukum HKI">Kekayaan Intelektual (HKI)</option>
+                        <option value="Hukum Pajak">Pajak & Kepailitan</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" id="telp" class="form-control" placeholder="No Telepon" required>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-success w-100">Simpan</button>
+                </div>
+            </form>
+        </div>
+        <div class="card p-4 shadow">
+            <h4>Daftar Pengacara Saat Ini</h4>
+            <table class="table table-striped mt-3 align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>Spesialisasi</th>
+                        <th>No. Telepon</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tabel-pengacara">
+                    <!-- Data dimuat dari script.js -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Script utama -->
+    <script src="js/script.js"></script>
+</body>
+</html>

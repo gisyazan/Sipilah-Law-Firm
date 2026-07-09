@@ -1,0 +1,38 @@
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-white {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 40px;
+    color: #333;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.02);
+}
+
+.card-white a {
+    color: #2f2f2f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card-white a:hover {
+    color: #0077b6;
+    text-decoration: underline;
+}
